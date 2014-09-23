@@ -1,10 +1,10 @@
 "let  ecliptic.vim - intuitive clipboard integration
 " Maintainer:   Rich Soni <http://richsoni.com/>
 
- " if exists("g:loaded_ecliptic") || v:version < 700 || &cp
- "   finish
- " endif
- " let g:loaded_ecliptic = 1
+ if exists("g:loaded_ecliptic") || v:version < 700 || &cp
+   finish
+ endif
+ let g:loaded_ecliptic = 1
 
 function! s:EclipticPaste(type, GNoG)
   let paste_command = 'p'
