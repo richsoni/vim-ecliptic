@@ -1,4 +1,4 @@
-# Ecliptic.vim
+# Ecliptic.vim: Amicable Clipboard Integration
 
 ##INTRODUCTION
 
