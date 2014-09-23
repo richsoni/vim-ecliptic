@@ -1,0 +1,37 @@
+*ecliptic.vim*  Amicable Clipboard Integration
+Author:  Rich Soni <http://richsoni.com/>
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *ecliptic*
+
+Using the clipboard with vim is one of its biggest painpoints.
+This plugin attempts to expose some mappings that make using the clipboard more sane.
+
+It eclipses your regular clipboard functionality, vim's yank and put commands.
+
+The mneumonic *c* prefixes each command (think clipboard).
+
+YANK PROXIES                                    *ecliptic-yank*
+
+cy{motion}     |y| |yank|
+cyy            |yy|
+cY             |Y|
+{Visual}cy     |v_y|
+{Visual}cY     |v_Y|
+
+PUT PROXIES                                     *ecliptic-put*
+
+cp             |p| |put|
+cP             |P|
+cgp            |gp|
+cgP            |gp|
+{Visual}cp     replace visual selection with clipboard
+
+
+ABOUT                                           *ecliptic-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/richsoni/vim-ecliptic
+
+ vim:tw=78:et:ft=help:norl:
