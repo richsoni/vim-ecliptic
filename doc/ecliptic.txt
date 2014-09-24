@@ -4,12 +4,14 @@ License: Same terms as Vim itself (see |license|)
 
 INTRODUCTION                                    *ecliptic*
 
+This plugin requires vim to be compiled with the +clipboard option
+
 Using the clipboard with vim is one of its biggest painpoints.
 This plugin attempts to expose some mappings that make using the clipboard more sane.
 
 It eclipses your regular clipboard functionality, vim's yank and put commands.
 
-The mneumonic *c* prefixes each command (think clipboard).
+The mnemonic *c* prefixes each command (think clipboard).
 
 YANK PROXIES                                    *ecliptic-yank*
 
