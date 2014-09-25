@@ -1,54 +1,66 @@
 ## Ecliptic.vim: Amicable Clipboard Integration
 
 #Motivation
-<a https://github.com/richsoni/vim-ecliptic>View Github Repo</a>
 
 Juggling between vim's local clipboard and the system clipboard is a headache.
-Accessing the plus register (e.g. ```"+yy```,  ```"+p```) is awkward and unintuitive.
-It is a hinderance in workflows that require even moderate amounts of clipboard usage.
+The plus register (e.g. ```"+yy```,  ```"+p```) hinders workflows that require even minimal use of the clipboard.
+It is a significant amount of keystrokes, and the keys are not in incovenient places.
 
 ### What Happens In Vim Stays In Vim
 
-Vim's builtin solution:  ```:set clipboard=unamedplus``` is unnatural.
-The system clipboard gets polluted with the text of every yank and delete command.
-This gets confusing, and annoying.
-Any seasoned vimmer is accustomed to keeping their clipboard private.
-
-**Getting and setting the clipboard should is a special case in a vim workflow.**
+Ecliptic is for those who find vim's builtin solution (```:set clipboard=unamedplus```) inconvenient.
+When using ```unamedplus``` the system clipboard gets polluted with the text of every yank and delete command.
+Perpetually binding the clipboard to the unnamed register can be confusing and annoying for some.
+The unamed register is frequently modified more than the clipboard is used.
 
 # Enter Ecliptic
 
-
 Ecliptic maps the power of ```"+``` to a more natural interface.
-Namely, through the ```c``` prefix (mneumonic for clipboard).
+All of its mapping start with the ```c``` prefix (mneumonic for clipboard).
 
 By default ```c``` is just an operator, so many ```c-letter``` bindings are unmapped.
-As such, Ecliptic exposes bindings that will not clobber default vim functionality.
+Ecliptic's mappings do not clobber default vim functionality.
 
 #Examples
 
->  1|  Even the butler hes got something to prove.  
->  2|  And, you ask why I don't live here?  
->  3|  Honey how come you don't move
+\* *cursor position represented by [ ]*
 
-For each assume the following:
-  <ul class='default'>
-    <li> We are working with the above buffer </li>
-    <li> initial clipboard="foobar" </li>
-    <li> initial unnamed(```""```) register=*"baz"*
-  </ul>
+<table>
+  <thead> <tr> <td> Before </td> <td> Command </td> <td> Result </td> </tr> <thead>
+  <tbody>
+    <tr>
+      <td>
+        buffer:<i>"[A]nd, you ask why I don't live here?"</i><br>
+        clipboard: <i>foobar</i><br>
+        unnamed: <i>baz</i>
+      </td>
+      <td>
+        <code>dW cyy </code>
+      </td>
+      <td>
+        vim line:<i>"And, [y]ou ask why I don't live here?"</i><br>
+        clipboard: <i>"you ask why I don't live here?"</i><br>
+        unnamed: <i>And,</i>
+      </td>
+    </tr>
 
-After ```cyy``` on line 2: clipboard = *"And, you ask why I don't live here?"*
-
-After ```cyaw``` on line 1 over *something*: clipboard =  *"something "*
-
-Assume Visual Line on line 3; After ```cy```: clipboard = *"Honey how come you don't move"*
-
-After ```cP``` on line 2, line 2 = *"foobarAnd, you ask why I don't live here?"*
-
-After ```cp``` on line 2, line 2 = *"Afoobarnd, you ask why I don't live here?"*
-
-Assume visually selected *And* on line 2;  After ```cp``` line 2 = *"foobar, you ask why I don't live here?"*
+    <tr>
+      <td>
+        cursor at start of line:<i>"[H]oney how come you don't move"</i><br>
+        clipboard: <i>Babe</i><br>
+        unnamed: <i>baz</i>
+      </td>
+      <td>
+        <code>dw cp</code>
+      </td>
+      <td>
+        vim line:<i>"Babe[ ]how come you don't move"</i><br>
+        clipboard: <i>Babe</i><br>
+        unnamed: <i>Honey</i>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #Usage
 
@@ -133,27 +145,32 @@ Assume visually selected *And* on line 2;  After ```cp``` line 2 = *"foobar, you
 
 # Installation
 
-<a https://github.com/richsoni/vim-ecliptic>View Github Repo</a>
 
-## +Cliboard is required
+## +Cliboard Requirement
 
-Ecliptic makes use of the ```"+``` register, which is not always available.
+Ecliptic makes use of the ```"+``` register, which gets enabled during installation.
 
-Check to make sure your version is compiled with clipboard by running this command in the terminal.
+The plugin will not work without the ```+clipboard``` option which exposes the ```"+``` register.
 
-```
-vim --version | grep +clipboard || echo 'Ecliptic requires +clipboard'
-```
-
-Vim installation varies system to system, but heres an example of how to get +clipboard on Mac OS X with homebrew.
+Run the following command to check for ```+clipboard``` flag:
 
 ```
-brew install macvim --override-system-vim
+$ vim --version | grep +clipboard || echo 'Ecliptic requires +clipboard'
+```
+
+If it does not return *'Ecliptic requires +clipboard'*, then you are good to go.
+
+If you are missing the flag, then you need to reinstall vim.
+Installation varies system to system.
+Heres an example of how to do it on Mac OS X with homebrew.
+
+```
+$ brew install macvim --override-system-vim
 ```
 
 A google search can help you get a proper vim installation on other systems.
 
-## Vundle
+## Vundle Users
 
 Add the following line to your .vimrc
 
@@ -161,11 +178,11 @@ Add the following line to your .vimrc
 Bundle "richsoni/vim-ecliptic"
 ```
 
-## Pathogen
+## Pathogen Users
 
 ```
-cd ~/.vim/bundle
-git clone git://github.com/richsoni/vim-ecliptic.git
+$ cd ~/.vim/bundle
+$ git clone git://github.com/richsoni/vim-ecliptic.git
 ```
 
 
