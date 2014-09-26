@@ -2,18 +2,42 @@
 Author:  Rich Soni <http://richsoni.com/>
 License: Same terms as Vim itself (see |license|)
 
-INTRODUCTION                                    *ecliptic*
+|ecliptic-motivation|             Background of plugin
+|ecliptic-enter|                  Plugin Summary
+|ecliptic-usage|                  How to use the plugin
+|ecliptic-yank|                   Using ecliptic to copy to the clipboard
+|ecliptic-delete|                 Using ecliptic to cut to the clipboard
+|ecliptic-put|                    Using ecliptic to paste from the clipboard
+|ecliptic-prefix|                 Customizing the prefic character
+|ecliptic-about|                  Find it online
+|ecliptic-clipboard-requirement|  When Ecliptic won't work
+|ecliptic-examples|               Ecliptic in action
 
-This plugin requires vim to be compiled with the +clipboard option
+MOTIVATION                      *ecliptic-motivation*
 
-Using the clipboard with vim is one of its biggest painpoints.
-This plugin attempts to expose some mappings that make using the clipboard more sane.
+Juggling between vim's local clipboard and the system clipboard is a headache.
+The plus register (e.g. "|+|yy,  "|+|p) hinders workflows that require even minimal use of the clipboard.
+It is a significant amount of keystrokes, and the keys are not in incovenient places.
 
-It eclipses your regular clipboard functionality, vim's yank and put commands.
+What Happens In Vim Stays In Vim~
 
-The mnemonic *c* prefixes each command (think clipboard).
+Ecliptic is for those who find vim's builtin solution (:set clipboard=unamedplus) inconvenient.
+When using |unamedplus| the system clipboard gets polluted with the text of every yank and delete command.
+Perpetually binding the clipboard to the unnamed register can be confusing and annoying for some.
+The unamed register is frequently modified more than the clipboard is used.
 
-YANK PROXIES                                    *ecliptic-yank*
+ENTER ECLIPTIC                  *ecliptic-enter*
+
+
+Ecliptic maps the power of "|+| to a more natural interface.
+All of its mapping start with the `c` prefix (mneumonic for clipboard).
+
+By default |c| is just an operator, so many `c-letter` bindings are unmapped.
+Ecliptic's mappings do not clobber default vim functionality.
+
+USAGE                           *ecliptic-usage*
+
+YANK PROXIES                    *ecliptic-yank*
 
 cy{motion}     |y| |yank|
 cyy            |yy|
@@ -21,7 +45,15 @@ cY             |Y|
 {Visual}cy     |v_y|
 {Visual}cY     |v_Y|
 
-PUT PROXIES                                     *ecliptic-put*
+DELETE PROXIES                  *ecliptic-delete*
+
+cd{motion}     |d|
+cdd            |dd|
+cD             |D|
+{Visual}cd     |v_d|
+{Visual}cD     |v_D|
+
+PUT PROXIES                     *ecliptic-put*
 
 cp             |p| |put|
 cP             |P|
@@ -29,8 +61,76 @@ cgp            |gp|
 cgP            |gp|
 {Visual}cp     replace visual selection with clipboard
 
+CUSTOM PREFIX                   *ecliptic-prefix*
+Custom Prefix
 
-ABOUT                                           *ecliptic-about*
+By default Ecliptic sets the prefix to `c` as a mneumonic for clipboard.
+This can be changed by setting the `g:ecliptic_prefix` variable in your |vimrc|.
+
+Here is an exampe remapping the prefix to the `-` key:
+
+>
+  let g:ecliptic_prefix = '-'
+
+Now commands like `-yy`, and `-p` will invoke Ecliptic commands.
+
+EXAMPLES                        *ecliptic-examples*
+
+*cursor position represented by []
+
+Example 1~
+
+Before >
+  buffer:"[A]nd, you ask why I don't live here?"
+  clipboard: foobar
+  unnamed: baz
+
+Command >
+  dW cyy
+
+Result >
+  vim line:"And, [y]ou ask why I don't live here?"
+  clipboard: "you ask why I don't live here?"
+  unnamed: And,
+
+Example 2~
+
+Before >
+  cursor at start of line:"[H]oney how come you don't move"
+  clipboard: Babe
+  unnamed: baz
+
+Command >
+  dw cp
+
+Result >
+  vim line:"Babe[ ]how come you don't move"
+  clipboard: Babe
+  unnamed: Honey
+
+
+CLIPBOARD REQUIREMENT           *ecliptic-clipboard-requirement*
+
+Ecliptic makes use of the "|+| register, which gets enabled during installation.
+
+The plugin will not work without the `+clipboard` option which exposes the "|+| register.
+
+Run the following command to check for `+clipboard` flag:
+
+>
+  $ vim --version | grep +clipboard || echo 'Ecliptic requires +clipboard'
+
+If it does not return 'Ecliptic requires +clipboard', then you are good to go.
+
+If you are missing the flag, then you need to reinstall vim.
+Installation varies system to system.
+Heres an example of how to do it on Mac OS X with homebrew.
+>
+  $ brew install macvim --override-system-vim
+
+A google search can help you get a proper vim installation on other systems.
+
+ABOUT                           *ecliptic-about*
 
 Grab the latest version or report a bug on GitHub:
 

@@ -20,48 +20,6 @@ All of its mapping start with the ```c``` prefix (mneumonic for clipboard).
 
 By default ```c``` is just an operator, so many ```c-letter``` bindings are unmapped.
 Ecliptic's mappings do not clobber default vim functionality.
-
-#Examples
-
-\* *cursor position represented by [ ]*
-
-<table>
-  <thead> <tr> <td> Before </td> <td> Command </td> <td> Result </td> </tr> <thead>
-  <tbody>
-    <tr>
-      <td>
-        buffer:<i>"[A]nd, you ask why I don't live here?"</i><br>
-        clipboard: <i>foobar</i><br>
-        unnamed: <i>baz</i>
-      </td>
-      <td>
-        <code>dW cyy </code>
-      </td>
-      <td>
-        vim line:<i>"And, [y]ou ask why I don't live here?"</i><br>
-        clipboard: <i>"you ask why I don't live here?"</i><br>
-        unnamed: <i>And,</i>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cursor at start of line:<i>"[H]oney how come you don't move"</i><br>
-        clipboard: <i>Babe</i><br>
-        unnamed: <i>baz</i>
-      </td>
-      <td>
-        <code>dw cp</code>
-      </td>
-      <td>
-        vim line:<i>"Babe[ ]how come you don't move"</i><br>
-        clipboard: <i>Babe</i><br>
-        unnamed: <i>Honey</i>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
 #Usage
 
 ##Yank Proxies
@@ -118,6 +76,7 @@ Ecliptic's mappings do not clobber default vim functionality.
     </tr>
   </tbody>
 </table>
+
 ##Put Proxies
 
 <table>
@@ -142,6 +101,61 @@ Ecliptic's mappings do not clobber default vim functionality.
   <td>replace visual selection with clipboard</td>
 </tr>
 </table>
+
+## Custom Prefix
+
+By default Ecliptic sets the prefix to ```c``` as a mneumonic for clipboard.
+This can be changed by setting the ```g:ecliptic_prefix``` variable in your .vimrc.
+
+Here is an exampe remapping the prefix to the ```-``` key:
+
+```
+let g:ecliptic_prefix = '-'
+```
+
+Now commands like ```-yy```, and ```-p``` will invoke Ecliptic commands.
+
+#Examples
+
+\* *cursor position represented by [ ]*
+
+<table>
+  <thead> <tr> <td> Before </td> <td> Command </td> <td> Result </td> </tr> <thead>
+  <tbody>
+    <tr>
+      <td>
+        buffer:<i>"[A]nd, you ask why I don't live here?"</i><br>
+        clipboard: <i>foobar</i><br>
+        unnamed: <i>baz</i>
+      </td>
+      <td>
+        <code>dW cyy </code>
+      </td>
+      <td>
+        vim line:<i>"And, [y]ou ask why I don't live here?"</i><br>
+        clipboard: <i>"you ask why I don't live here?"</i><br>
+        unnamed: <i>And,</i>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cursor at start of line:<i>"[H]oney how come you don't move"</i><br>
+        clipboard: <i>Babe</i><br>
+        unnamed: <i>baz</i>
+      </td>
+      <td>
+        <code>dw cp</code>
+      </td>
+      <td>
+        vim line:<i>"Babe[ ]how come you don't move"</i><br>
+        clipboard: <i>Babe</i><br>
+        unnamed: <i>Honey</i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 
 # Installation
 
