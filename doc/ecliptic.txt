@@ -1,6 +1,7 @@
 *ecliptic.vim*  Amicable Clipboard Integration
 Author:  Rich Soni <http://richsoni.com/>
 License: Same terms as Vim itself (see |license|)
+Version: 0.2.1
 
 |ecliptic-motivation|             Background of plugin
 |ecliptic-enter|                  Plugin Summary

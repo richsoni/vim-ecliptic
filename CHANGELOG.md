@@ -1,3 +1,7 @@
+# 0.2.1 09-26-2014
+Fix cp for visual-line mode
+
+
 # 0.2.0 09-25-2014
 ### Custom Prefix
 

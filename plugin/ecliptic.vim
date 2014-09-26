@@ -1,6 +1,6 @@
 "let  ecliptic.vim - intuitive clipboard integration
 " Maintainer:   Rich Soni <http://richsoni.com/>
-" Version: 0.2.0
+" Version: 0.2.1
 
  if exists("g:loaded_ecliptic") || v:version < 700 || &cp
    finish
@@ -12,6 +12,8 @@ function! s:EclipticPaste(type, GNoG)
   let g_command = ''
   if a:type ==# 'v'
     normal! `<v`>"+p
+  elseif a:type ==# 'V'
+    normal! '<V`>"+p
   else
     if a:type ==# 'before'
       let paste_command = 'P'
