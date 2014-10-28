@@ -115,6 +115,27 @@ let g:ecliptic_prefix = '-'
 
 Now commands like ```-yy```, and ```-p``` will invoke Ecliptic commands.
 
+## Ecliptic Scratch
+
+
+The command ```cb``` represents e```c```liptic-```b```uffer.
+This will open a scratch buffer containing contents of the clipboard (```+```
+register).
+
+Each edit to this buffer will replace the clipboard with entirety of the
+buffer.
+
+<table>
+<tr>
+  <td><code> cb </code></td>
+  <td>open ecliptic scratch buffer</td>
+</tr>
+<tr>
+  <td><code> <C-L> </code></td>
+  <td>refresh an opened ecliptic scratch buffer with current clipboard contents</td>
+</tr>
+</table>
+
 #Examples
 
 \* *cursor position represented by [ ]*

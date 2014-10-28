@@ -2,10 +2,10 @@
 " Maintainer:   Rich Soni <http://richsoni.com/>
 " Version: 0.2.1
 
- if exists("g:loaded_ecliptic") || v:version < 700 || &cp
-   finish
- endif
- let g:loaded_ecliptic = 1
+ " if exists("g:loaded_ecliptic") || v:version < 700 || &cp
+ "   finish
+ " endif
+ " let g:loaded_ecliptic = 1
 
 function! s:EclipticPaste(type, GNoG)
   let paste_command = 'p'
@@ -59,6 +59,18 @@ function! s:EclipticCopy(type)
   endif
 endfunction
 
+function! s:EclipticBuffer()
+  let ecliptic_paste='%d | silent! %pu!+ | normal! Gddgg'
+  let ecliptic_paste_escaped='%d \| silent! %pu!+ \| normal! Gddgg'
+  vsplit (clipboard)
+  setlocal buftype=nofile
+  augroup autocopy
+    autocmd InsertLeave,TextChanged,BufLeave,FocusLost <buffer> silent! %y+
+    execute "autocmd FocusGained,BufEnter <buffer> ".ecliptic_paste
+  augroup end
+  execute 'nnoremap <buffer> <silent> <C-L> :'.ecliptic_paste_escaped.'<CR><C-L>'
+  execute ecliptic_paste
+endfunction
 
 if !exists("g:ecliptic_prefix")
   let g:ecliptic_prefix = 'c'
@@ -92,3 +104,6 @@ execute 'nmap '.g:ecliptic_prefix.'P <Plug>EclipticPBefore'
 execute 'nmap '.g:ecliptic_prefix.'gp <Plug>EclipticGPAfter'
 execute 'nmap '.g:ecliptic_prefix.'gP <Plug>EclipticGPBefore'
 execute 'vmap '.g:ecliptic_prefix.'p <Plug>EclipticPVisual'
+
+nnoremap <silent> <Plug>EclipticBuffer :call <SID>EclipticBuffer()<cr>
+execute 'nmap '.g:ecliptic_prefix.'b <Plug>EclipticBuffer'

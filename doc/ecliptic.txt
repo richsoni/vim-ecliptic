@@ -10,6 +10,7 @@ Version: 0.2.1
 |ecliptic-delete|                 Using ecliptic to cut to the clipboard
 |ecliptic-put|                    Using ecliptic to paste from the clipboard
 |ecliptic-prefix|                 Customizing the prefic character
+|ecliptic-scratch|                Live edit the contents of your clipboard
 |ecliptic-about|                  Find it online
 |ecliptic-clipboard-requirement|  When Ecliptic won't work
 |ecliptic-examples|               Ecliptic in action
@@ -61,6 +62,18 @@ cP             |P|
 cgp            |gp|
 cgP            |gp|
 {Visual}cp     replace visual selection with clipboard
+
+SCRATCH BUFFER                  *ecliptic-scratch*
+
+The command `cb` represents e`c`liptic-`b`uffer.
+This will open a scratch buffer containing contents of the clipboard (|+|
+register).
+
+Each edit to this buffer will replace the clipboard with entirety of the
+buffer.
+
+cb            open ecliptic-scratch buffer
+<C-L>         refresh an opened ecliptic-scratch buffer with current clipboard contents
 
 CUSTOM PREFIX                   *ecliptic-prefix*
 Custom Prefix
