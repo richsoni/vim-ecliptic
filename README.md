@@ -4,19 +4,19 @@
 
 Juggling between vim's local clipboard and the system clipboard is a headache.
 The plus register (e.g. ```"+yy```,  ```"+p```) hinders workflows that require even minimal use of the clipboard.
-It is a significant amount of keystrokes, and the keys are not in incovenient places.
+It is a significant amount of keystrokes, and the keys are not in inconvenient places.
 
 ### What Happens In Vim Stays In Vim
 
-Ecliptic is for those who find vim's builtin solution (```:set clipboard=unamedplus```) inconvenient.
-When using ```unamedplus``` the system clipboard gets polluted with the text of every yank and delete command.
+Ecliptic is for those who find vim's builtin solution (```:set clipboard=unnamedplus```) inconvenient.
+When using ```unnamedplus``` the system clipboard gets polluted with the text of every yank and delete command.
 Perpetually binding the clipboard to the unnamed register can be confusing and annoying for some.
-The unamed register is frequently modified more than the clipboard is used.
+The unnamed register is frequently modified more than the clipboard is used.
 
 # Enter Ecliptic
 
 Ecliptic maps the power of ```"+``` to a more natural interface.
-All of its mapping start with the ```c``` prefix (mneumonic for clipboard).
+All of its mapping start with the ```c``` prefix (mnemonic for clipboard).
 
 By default ```c``` is just an operator, so many ```c-letter``` bindings are unmapped.
 Ecliptic's mappings do not clobber default vim functionality.
@@ -104,10 +104,10 @@ Ecliptic's mappings do not clobber default vim functionality.
 
 ## Custom Prefix
 
-By default Ecliptic sets the prefix to ```c``` as a mneumonic for clipboard.
+By default Ecliptic sets the prefix to ```c``` as a mnemonic for clipboard.
 This can be changed by setting the ```g:ecliptic_prefix``` variable in your .vimrc.
 
-Here is an exampe remapping the prefix to the ```-``` key:
+Here is an example remapping the prefix to the ```-``` key:
 
 ```
 let g:ecliptic_prefix = '-'
@@ -181,7 +181,7 @@ buffer.
 # Installation
 
 
-## +Cliboard Requirement
+## +Clipboard Requirement
 
 Ecliptic makes use of the ```"+``` register, which gets enabled during installation.
 
