@@ -6,6 +6,7 @@ ecliptic-examples	ecliptic.txt	/*ecliptic-examples*
 ecliptic-motivation	ecliptic.txt	/*ecliptic-motivation*
 ecliptic-prefix	ecliptic.txt	/*ecliptic-prefix*
 ecliptic-put	ecliptic.txt	/*ecliptic-put*
+ecliptic-scratch	ecliptic.txt	/*ecliptic-scratch*
 ecliptic-usage	ecliptic.txt	/*ecliptic-usage*
 ecliptic-yank	ecliptic.txt	/*ecliptic-yank*
 ecliptic.vim	ecliptic.txt	/*ecliptic.vim*
