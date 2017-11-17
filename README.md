@@ -46,6 +46,10 @@ Ecliptic's mappings do not clobber default vim functionality.
       <td><code> {Visual}cY </code></td>
       <td>v_Y</td>
     </tr>
+    <tr>
+      <td><code>c%</code></td>
+      <td>expand("%:p") {copies the current filename}</td>
+    </tr>
   </tbody>
 </table>
 

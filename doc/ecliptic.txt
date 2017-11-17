@@ -46,6 +46,7 @@ cyy            |yy|
 cY             |Y|
 {Visual}cy     |v_y|
 {Visual}cY     |v_Y|
+c%             |expand("%:p")|
 
 DELETE PROXIES                  *ecliptic-delete*
 

@@ -28,7 +28,6 @@ function! s:EclipticPaste(type, GNoG)
 endfunction
 
 function! s:EclipticDelete(type)
-  echo "here"
   if a:type ==# 'v'
     normal! `<v`>"+d
   elseif a:type ==# 'char'
@@ -60,6 +59,10 @@ function! s:EclipticCopy(type)
   endif
 endfunction
 
+function! s:EclipticFilenameCopy()
+  let @+ = expand("%:p")
+endfunction
+
 function! s:EclipticBuffer()
   let ecliptic_paste='%d | silent! %pu!+ | normal! Gddgg'
   let ecliptic_paste_escaped='%d \| silent! %pu!+ \| normal! Gddgg'
@@ -85,6 +88,8 @@ execute 'nmap '.g:ecliptic_prefix.'y :set operatorfunc=<SID>EclipticCopy<cr>g@'
 execute 'nmap '.g:ecliptic_prefix.'Y  <Plug>EclipticYY'
 execute 'vmap '.g:ecliptic_prefix.'y <Plug>EclipticVY'
 execute 'vmap '.g:ecliptic_prefix.'Y <Plug>EclipticVYLine'
+nnoremap <silent> <Plug>EclipticFilenameCopy :call <SID>EclipticFilenameCopy()<cr>
+execute 'nmap '.g:ecliptic_prefix.'%  <Plug>EclipticFilenameCopy'
 
 vnoremap <silent> <Plug>EclipticVD      :call <SID>EclipticDelete(visualmode())<cr>'
 vnoremap <silent> <Plug>EclipticVDLine  :call <SID>EclipticDelete('V')<cr>'
